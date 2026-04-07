@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "graphrag-qa"
+version = "0.1.0"
+description = "Production-ready GraphRAG QA system with LangChain + Neo4j"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "GraphRAG Team" }
+]
+dependencies = [
+  "fastapi>=0.116.0",
+  "uvicorn[standard]>=0.35.0",
+  "pydantic>=2.11.0",
+  "pydantic-settings>=2.10.0",
+  "openai>=1.102.0",
+  "langchain>=0.3.27",
+  "langchain-openai>=0.3.31",
+  "langchain-community>=0.3.27",
+  "neo4j>=5.28.0",
+  "httpx>=0.28.1",
+  "orjson>=3.11.2",
+  "tenacity>=9.1.2",
+  "python-dotenv>=1.1.1"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.4.1",
+  "pytest-asyncio>=1.1.0",
+  "ruff>=0.12.9",
+  "mypy>=1.17.1"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
