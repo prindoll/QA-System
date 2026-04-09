@@ -6,7 +6,8 @@ Rules:
 2) Capture taxonomy links using relation_type in [IS_A, PART_OF, RELATES_TO].
 3) Include multi-hop paths if chain evidence appears in the text.
 4) Every relationship must include evidence_text copied from source.
-5) Never invent unsupported facts. Lower confidence if uncertain.
+5) For each relationship, include both source_doc_id and source_chunk_id.
+6) Never invent unsupported facts. Lower confidence if uncertain.
 """.strip()
 
 

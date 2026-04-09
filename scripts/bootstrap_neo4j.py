@@ -14,6 +14,9 @@ def main() -> None:
     queries = [
         "CREATE CONSTRAINT entity_id_unique IF NOT EXISTS FOR (e:Entity) REQUIRE e.entity_id IS UNIQUE",
         "CREATE CONSTRAINT chunk_id_unique IF NOT EXISTS FOR (c:Chunk) REQUIRE c.chunk_id IS UNIQUE",
+        "CREATE CONSTRAINT relates_to_relation_id_unique IF NOT EXISTS FOR ()-[r:RELATES_TO]-() REQUIRE r.relation_id IS UNIQUE",
+        "CREATE CONSTRAINT is_a_relation_id_unique IF NOT EXISTS FOR ()-[r:IS_A]-() REQUIRE r.relation_id IS UNIQUE",
+        "CREATE CONSTRAINT part_of_relation_id_unique IF NOT EXISTS FOR ()-[r:PART_OF]-() REQUIRE r.relation_id IS UNIQUE",
         "CREATE VECTOR INDEX chunk_embedding_index IF NOT EXISTS FOR (c:Chunk) ON (c.embedding) OPTIONS {indexConfig: {`vector.dimensions`: 1536, `vector.similarity_function`: 'cosine'}}",
         "CREATE INDEX entity_canonical_name IF NOT EXISTS FOR (e:Entity) ON (e.canonical_name)",
     ]

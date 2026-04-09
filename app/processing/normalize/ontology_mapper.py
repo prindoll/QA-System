@@ -15,6 +15,7 @@ class OntologyMapper:
         "related_to": "RELATES_TO",
         "relates_to": "RELATES_TO",
     }
+    ALLOWED_RELATION_TYPES = {"IS_A", "PART_OF", "RELATES_TO"}
 
     def map_payload(self, payload: dict) -> dict:
         for ent in payload.get("entities", []):
@@ -23,6 +24,7 @@ class OntologyMapper:
 
         for rel in payload.get("relationships", []):
             raw_rel = str(rel.get("relation_type", "RELATES_TO")).lower()
-            rel["relation_type"] = self.RELATION_MAP.get(raw_rel, rel.get("relation_type", "RELATES_TO"))
+            mapped = self.RELATION_MAP.get(raw_rel, str(rel.get("relation_type", "RELATES_TO")).upper())
+            rel["relation_type"] = mapped if mapped in self.ALLOWED_RELATION_TYPES else "RELATES_TO"
 
         return payload

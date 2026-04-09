@@ -56,7 +56,7 @@ class GraphExpander:
           RETURN
             head(nodes(p)).entity_id AS source_id,
             last(nodes(p)).entity_id AS target_id,
-            last(rs).predicate AS relation,
+            type(last(rs)) AS relation,
             reduce(acc = 1.0, x IN rs | acc * coalesce(x.confidence, 0.7)) AS confidence,
             [node IN nodes(p) | node.entity_id] AS path
           LIMIT $neighbor_limit

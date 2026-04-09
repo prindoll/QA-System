@@ -186,6 +186,12 @@ Nếu cần backfill vector:
 python -m scripts.backfill_embeddings
 ```
 
+Nếu nâng cấp schema graph (taxonomy typed edges + MENTIONED_IN backfill):
+
+```bash
+python -m scripts.run_graph_migration
+```
+
 ## 5.4 Chạy API QA
 
 ```bash

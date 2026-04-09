@@ -18,6 +18,7 @@ class ExtractedRelation(BaseModel):
     confidence: float
     evidence_text: str
     source_doc_id: str
+    source_chunk_id: str
 
 
 class ExtractionOutput(BaseModel):

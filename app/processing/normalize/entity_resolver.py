@@ -2,6 +2,8 @@ import hashlib
 
 
 class EntityResolver:
+    ALLOWED_RELATION_TYPES = {"IS_A", "PART_OF", "RELATES_TO"}
+
     def resolve_payload(self, payload: dict) -> dict:
         entities = payload.get("entities", [])
 
@@ -21,6 +23,8 @@ class EntityResolver:
         payload["entities"] = deduped_entities
 
         for rel in payload.get("relationships", []):
+            relation_type = str(rel.get("relation_type", "RELATES_TO")).upper()
+            rel["relation_type"] = relation_type if relation_type in self.ALLOWED_RELATION_TYPES else "RELATES_TO"
             src = rel.get("source_entity_id", "")
             tgt = rel.get("target_entity_id", "")
             rel["source_entity_id"] = self._resolve_entity_ref(src, deduped_entities)

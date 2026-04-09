@@ -39,7 +39,12 @@ async def ingest_document(text: str, doc_id: str) -> None:
             chunk_id=chunk["chunk_id"],
         )
         normalized = resolver.resolve_payload(mapper.map_payload(extracted))
-        graph_indexer.index(normalized)
+        graph_indexer.index(
+            normalized_payload=normalized,
+            chunk_id=chunk["chunk_id"],
+            source_doc_id=doc_id,
+            chunk_text=chunk["text"],
+        )
 
     vector_indexer.index_chunks(chunks)
     neo4j.close()

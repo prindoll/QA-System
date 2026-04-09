@@ -37,6 +37,7 @@ Example request:
 python -m scripts.bootstrap_neo4j
 python -m scripts.run_ingestion --input data/raw/sample.txt --doc-id sample-doc-1
 python -m scripts.backfill_embeddings
+python -m scripts.run_graph_migration
 ```
 
 ## 4. Project layout
